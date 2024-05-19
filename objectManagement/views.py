@@ -175,11 +175,11 @@ def editProject(request,id=None):
 
     if pInstance==None:
       sForm= SocialForm(prefix="sForm")
-      statusForm=StatusForm(instance=pInstance.personStatus,prefix="statForm",initial={'creator': request.user})
+      statusForm=StatusForm(prefix="statForm",initial={'creator': request.user})
 
     else:
       sForm= SocialForm(prefix="sForm",instance=pInstance.sID)
-      statusForm=StatusForm(instance=pInstance.personStatus,prefix="statForm",initial={'editor': request.user})
+      statusForm=StatusForm(instance=pInstance.projectStatus,prefix="statForm",initial={'editor': request.user})
 
     context={
       "projectForm": pForm,
