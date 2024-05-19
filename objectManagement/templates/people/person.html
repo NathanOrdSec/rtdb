@@ -22,6 +22,10 @@
     <td><a href="/details/project/{{ project.pID }}/">{{ project.projectName }}</a></td>
     <td><p>Last Updated: {{ project.Status.lastUpdated }}</p></td>
     <td><p>Status: {{ project.Status.active }}</p></td>
+    {% if project.Status.creator != None %}
+    <td><p>Creator: {{ project.Status.creator }}</p></td>
+    {% endif %}
+
 </tr>
 {% endfor %}
 <footer>

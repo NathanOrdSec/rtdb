@@ -101,10 +101,10 @@ def editPerson(request,id=None):
       hInstance.save()      
     hForm = PersonForm(request.POST,instance=hInstance,prefix="hForm")
     sForm = SocialForm(request.POST,request.FILES,instance=hInstance.sID,prefix="sForm")
-    if moderatorCheck(request.user):
-      statusForm=StatusForm(request.POST,instance=hInstance.personStatus,prefix="statForm")
-      if statusForm.is_valid():
-        statusForm.save()
+    statusForm=StatusForm(request.POST,instance=hInstance.personStatus,prefix="statForm")
+    if statusForm.is_valid():
+      statusForm.initial["creator"] = request.user
+      statusForm.save()
     if hForm.is_valid():
       hInstance=hForm.save()
     if sForm.is_valid():
@@ -123,8 +123,7 @@ def editPerson(request,id=None):
         statusForm=StatusForm(prefix="statForm")
     else:
       sForm= SocialForm(prefix="sForm",instance=hInstance.sID)
-      if moderatorCheck(request.user):
-        statusForm=StatusForm(instance=hInstance.personStatus,prefix="statForm")
+      statusForm=StatusForm(instance=hInstance.personStatus,prefix="statForm")
 
     context={
       "personForm": hForm,
@@ -158,9 +157,10 @@ def editProject(request,id=None):
     if pForm.is_valid():
       pForm.save()
     if sForm.is_valid():
+      statusForm.initial["creator"] = request.user
       sForm.save()
     if sForm.is_valid() and pForm.is_valid():
-      messages.info(request,request.user)
+      messages.info(request,'Project Updated')
       return redirect("/list/project")
   else:
     template = loader.get_template('projects/editProject.html')
