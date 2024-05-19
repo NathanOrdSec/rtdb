@@ -13,14 +13,14 @@
 <p>Creator: {{ status.creator }}</p>
 {% endif %}
 {% if status.editor != None %}
-<p>Creator: {{ status.editor }}</p>
+<p>Editor: {{ status.editor }}</p>
 {% endif %}
-<p>Active Project: {{ status.active }}<p>
+<p>Active Person: {{ status.active }}<p>
 <p>Last Updated: {{ status.lastUpdated }}<p>
 <h2>Social Media</h2>
 <ul>
 {% for name,link in socialMedia.items %}
-    {% if link != "" %}
+    {% if link != None %}
         <li><a href="{{ link }}">{{ name }}</a></li>
     {% endif %}
 {% endfor %}
