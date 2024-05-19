@@ -2,3 +2,4 @@
 /rtdb/userDB.sqlite3
 /rtdb/nginx.conf
 /.env.prod
+/.env
