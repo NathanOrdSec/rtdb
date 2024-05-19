@@ -14,17 +14,17 @@ class Status(models.Model):
 
 class Socials(models.Model):
     sID=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='SID')
-    twitter=models.URLField(max_length=255,blank=True,verbose_name="Twitter")
-    instagram=models.URLField(max_length=255,blank=True,verbose_name="Instagram")
-    youtube=models.URLField(max_length=255,blank=True,verbose_name="YouTube")
-    twitch=models.URLField(max_length=255,blank=True,verbose_name="Twitch")
-    reddit=models.URLField(max_length=255,blank=True,verbose_name="Reddit")
-    tiktok=models.URLField(max_length=255,blank=True,verbose_name="TikTok")
-    threads=models.URLField(max_length=255,blank=True,verbose_name="Threads")
-    spotify=models.URLField(max_length=255,blank=True,verbose_name="Spotify")
-    website=models.URLField(max_length=255,blank=True,verbose_name="Website")
-    email=models.EmailField(max_length=255,blank=True,verbose_name="Email")
-    other=models.CharField(max_length=255,blank=True,verbose_name="Other")
+    twitter=models.URLField(max_length=255,blank=True,verbose_name="Twitter",default="")
+    instagram=models.URLField(max_length=255,blank=True,verbose_name="Instagram",default="")
+    youtube=models.URLField(max_length=255,blank=True,verbose_name="YouTube",default="")
+    twitch=models.URLField(max_length=255,blank=True,verbose_name="Twitch",default="")
+    reddit=models.URLField(max_length=255,blank=True,verbose_name="Reddit",default="")
+    tiktok=models.URLField(max_length=255,blank=True,verbose_name="TikTok",default="")
+    threads=models.URLField(max_length=255,blank=True,verbose_name="Threads",default="")
+    spotify=models.URLField(max_length=255,blank=True,verbose_name="Spotify",default="")
+    website=models.URLField(max_length=255,blank=True,verbose_name="Website",default="")
+    email=models.EmailField(max_length=255,blank=True,verbose_name="Email",default="")
+    other=models.CharField(max_length=255,blank=True,verbose_name="Other",default="")
     image=models.ImageField(upload_to="images/%Y/%m/%d/",null=True,storage=PublicMediaStorage(),max_length=255)
     
     @property
