@@ -38,7 +38,6 @@ SESSION_COOKIE_SECURE=True
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -47,7 +46,8 @@ INSTALLED_APPS = [
     'objectManagement',
     'authentication',
     'storages',
-    'gunicorn'
+    'gunicorn',
+    'django.contrib.admin'
 ]
 
 MIDDLEWARE = [
