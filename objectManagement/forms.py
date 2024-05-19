@@ -55,5 +55,9 @@ class StatusForm(forms.ModelForm):
         super(StatusForm, self).__init__(*args, **kwargs)
         from django.forms.widgets import HiddenInput
         hide_condition = kwargs.pop('hide_condition',None)
+        self.fields['approved'].required = False
+        self.fields['active'].required = False
+        self.fields['creator'].required = False
+        self.fields['editor'].required = False
         self.fields['creator'].widget = HiddenInput()
         self.fields['editor'].widget = HiddenInput()

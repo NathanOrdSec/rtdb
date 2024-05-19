@@ -106,9 +106,7 @@ def editPerson(request,id=None):
     statusForm=StatusForm(request.POST,instance=hInstance.personStatus,prefix="statForm")
     if statusForm.is_valid():
       if moderatorCheck(request.user):
-        statusForm.cleaned_data["user_editor"] = request.user
-      else:
-        statusForm.cleaned_data["user_creator"] = request.user
+        statusForm.cleaned_data["editor"] = request.user
       statusForm.save()
     if hForm.is_valid():
       hInstance=hForm.save()
@@ -125,10 +123,10 @@ def editPerson(request,id=None):
     if hInstance==None:
       sForm= SocialForm(prefix="sForm")
       if moderatorCheck(request.user):
-        statusForm=StatusForm(prefix="statForm")
+        statusForm=StatusForm(prefix="statForm",initial={'creator': request.user})
     else:
       sForm= SocialForm(prefix="sForm",instance=hInstance.sID)
-      statusForm=StatusForm(instance=hInstance.personStatus,prefix="statForm")
+      statusForm=StatusForm(instance=hInstance.personStatus,prefix="statForm",initial={'creator': request.user})
 
     context={
       "personForm": hForm,
