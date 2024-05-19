@@ -22,7 +22,7 @@
 <h2>Project Social Media</h2>
 <ul>
 {% for name,link in socials.items %}
-    {% if link != None or link != "" %}
+    {% if link != None and link != "" %}
         <li><a href="{{ link }}">{{ name }}</a></li>
     {% endif %}
 {% endfor %}
