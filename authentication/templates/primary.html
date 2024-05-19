@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://rtdb-files.nyc3.cdn.digitaloceanspaces.com/static/css/styles.css" />
+  
+</head>
+<body>
+  <header>
+    <ul class="menu">
+      <li><a href="/">Home</a></li>
+      <li><a href="/list/person/">List People</a></li>
+      <li><a href="/list/project/">List Project</a></li>
+      {% if user.is_authenticated %}
+        <li><a href="/editPerson/">Create Person</a></li>
+        <li><a href="/editProject/">Create Project</a></li>
+        <li class="username">User: {{ user.get_username }}</li>
+        <li class="logout">
+          <form id="logout-form" method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+          <button type="submit" class="btn btn-link">Logout</button>
+          </form>
+        </li>
+      {% else %}
+        <li><a href="/accounts/register">Register</a></li>
+        <li class="logout"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+      {% endif %}
+    </ul>
+
+  </header>
+
+{% if messages %}
+  {% for message in messages %}
+      <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
+  {% endfor %}
+{% endif %}
+{% block content %}
+{% endblock %}
+<footer>
+  <p>Want to <a href="https://streamlabs.com/nord8100/tip">help me</a> out? Server hosting is currently around $30/mo and I would greatly appreciate the support.</p>
+</footer>
+</body>
+</html>
