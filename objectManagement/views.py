@@ -149,24 +149,26 @@ def editProject(request,id=None):
       pInstance=Projects(projectName="Project Name")
       pInstance.sID=Socials()
       pInstance.projectStatus=Status()
+      pInstance.projectStatus.creator=request.user
       pInstance.projectStatus.save()
       pInstance.sID.save()
       pInstance.save()
     pForm = ProjectForm(request.POST,instance=pInstance,prefix="pForm")
     sForm= SocialForm(request.POST,request.FILES,instance=pInstance.sID,prefix="sForm")
 
-    if moderatorCheck(request.user):
-        statusForm=StatusForm(request.POST,prefix="statForm",instance=pInstance.projectStatus)
-        if statusForm.is_valid():
+    if (moderatorCheck(request.user) or pInstance.projectStatus.creator==request.user):
+      statusForm=StatusForm(request.POST,prefix="statForm",instance=pInstance.projectStatus)
+      if statusForm.is_valid():
+          if moderatorCheck(request.user):
+            statusForm.cleaned_data["editor"] = request.use
           statusForm.save()
-    if pForm.is_valid():
-      pForm.save()
-    if sForm.is_valid():
-      statusForm.initial["creator"] = request.user
-      sForm.save()
-    if sForm.is_valid() and pForm.is_valid():
-      messages.info(request,'Project Updated')
-      return redirect("/list/project")
+      if pForm.is_valid():
+        pForm.save()
+      if sForm.is_valid():
+        sForm.save()
+      if sForm.is_valid() and pForm.is_valid():
+        messages.info(request,'Project Updated')
+        return redirect("/list/project")
   else:
     template = loader.get_template('projects/editProject.html')
     pForm = ProjectForm(prefix="pForm",instance=pInstance)
