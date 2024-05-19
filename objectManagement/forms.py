@@ -46,10 +46,13 @@ class ProjectForm(forms.ModelForm):
         self.fields['projectDescription'].required = False
 
 class StatusForm(forms.ModelForm):
+
     class Meta:
         model = Status
         fields = ['approved','active','creator']
+    
     def __init__(self, *args, **kwargs):
+        super(StatusForm, self).__init__(*args, **kwargs)
         from django.forms.widgets import HiddenInput
         hide_condition = kwargs.pop('hide_condition',None)
         self.fields['creator'].widget = HiddenInput()
