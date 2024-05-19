@@ -67,7 +67,7 @@ def details(request,detailType,id):
       'person': individualPerson,
       'projects': individualPerson.pID.all(),
       'socialMedia': individualPerson.sID.getLinks,
-      'status':individualPerson.personStatus.all()
+      'status':individualPerson.personStatus
       }
       return HttpResponse(template.render(context, request))
      
@@ -83,7 +83,7 @@ def details(request,detailType,id):
         'project': individualProject,
         'socials': individualProject.sID.getLinks,
         'people': People.objects.filter(personStatus__approved=False,pID=individualProject),
-        'status':individualProject.projectStatus.all()
+        'status':individualProject.projectStatus
       }
       return HttpResponse(template.render(context))
 
