@@ -83,7 +83,7 @@ def details(request,detailType,id):
         'project': individualProject,
         'socials': individualProject.sID.getLinks,
         'people': People.objects.filter(personStatus__approved=False,pID=individualProject),
-        'status':individualProject.personStatus.all()
+        'status':individualProject.projectStatus.all()
       }
       return HttpResponse(template.render(context))
 
