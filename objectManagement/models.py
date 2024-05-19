@@ -40,7 +40,7 @@ class Socials(models.Model):
                 "TikTok":self.tiktok,
                 "Threads":self.threads,
                 "Spotify":self.spotify,
-                "Apple":self.apple,
+                "Apple Podcasts":self.apple,
                 "Website":self.website,
                 "Other":self.other}
 

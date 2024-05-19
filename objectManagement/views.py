@@ -106,9 +106,9 @@ def editPerson(request,id=None):
     statusForm=StatusForm(request.POST,instance=hInstance.personStatus,prefix="statForm")
     if statusForm.is_valid():
       if moderatorCheck(request.user):
-        statusForm.initial["editor"] = request.user
+        statusForm.cleaned_data["editor"] = request.user
       else:
-        statusForm.initial["creator"] = request.user
+        statusForm.cleaned_data["creator"] = request.user
       statusForm.save()
     if hForm.is_valid():
       hInstance=hForm.save()
