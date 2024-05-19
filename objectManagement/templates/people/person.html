@@ -20,7 +20,7 @@
 <h2>Social Media</h2>
 <ul>
 {% for name,link in socialMedia.items %}
-    {% if link != None %}
+    {% if link != None or link != "" %}
         <li><a href="{{ link }}">{{ name }}</a></li>
     {% endif %}
 {% endfor %}
