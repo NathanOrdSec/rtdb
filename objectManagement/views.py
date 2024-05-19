@@ -160,7 +160,7 @@ def editProject(request,id=None):
     if sForm.is_valid():
       sForm.save()
     if sForm.is_valid() and pForm.is_valid():
-      messages.info(request,'Project Updated')
+      messages.info(request,request.user)
       return redirect("/list/project")
   else:
     template = loader.get_template('projects/editProject.html')
