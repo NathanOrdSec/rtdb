@@ -9,14 +9,14 @@
 <h1>{{ project.projectName }}</h1>
 <h2>Project Details</h2>
 {% if status.creator != None %}
-<p>{{ status.creator }}<p>
+<p>Creator: {{ status.creator }}<p>
 {% endif %}
 
-
+{% if status.editor != None %}
+<p>Editor: {{ status.editor }}<p>
+{% endif %}
 <p>Active Project: {{ status.active }}<p>
-{% if status.lastUpdated != None %}
-<p>{{ status.lastUpdated }}<p>
-{% endif %}
+<p>Last Updated: {{ status.lastUpdated }}<p>
 
 <p>{{ project.projectDescription }}</p>
 <h2>Project Social Media</h2>
