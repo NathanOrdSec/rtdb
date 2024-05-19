@@ -15,11 +15,10 @@
       {% if user.is_authenticated %}
         <li><a href="/editPerson/">Create Person</a></li>
         <li><a href="/editProject/">Create Project</a></li>
-        <li class="username">User: {{ user.get_username }}</li>
         <li class="logout">
           <form id="logout-form" method="post" action="{% url 'logout' %}">
             {% csrf_token %}
-          <button type="submit" class="btn btn-link">Logout</button>
+          <button type="submit" class="btn btn-link">Logout {{ user.get_username }}</button>
           </form>
         </li>
       {% else %}
