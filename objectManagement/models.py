@@ -24,7 +24,7 @@ class Socials(models.Model):
     tiktok=models.URLField(max_length=255,blank=True,null=True,verbose_name="TikTok",default="")
     threads=models.URLField(max_length=255,blank=True,null=True,verbose_name="Threads",default="")
     spotify=models.URLField(max_length=255,blank=True,null=True,verbose_name="Spotify",default="")
-    apple=models.URLField(max_length=255,blank=True,null=True,verbose_name="Apple Podcasts",default="")
+    apple=models.URLField(max_length=255,blank=True,null=True,verbose_name="Apple Podcasts",default=None)
     website=models.URLField(max_length=255,blank=True,null=True,verbose_name="Website",default="")
     email=models.EmailField(max_length=255,blank=True,null=True,verbose_name="Email",default="")
     other=models.CharField(max_length=255,blank=True,null=True,verbose_name="Other",default="")
