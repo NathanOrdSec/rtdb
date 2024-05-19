@@ -21,7 +21,7 @@ def adminCheck(user):
 
 def index(request):
   template = loader.get_template('index.html')
-  return HttpResponse(template.render())
+  return HttpResponse(template.render(request))
 
 def list(request,detailType):
   match detailType:
