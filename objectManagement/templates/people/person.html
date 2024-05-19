@@ -27,18 +27,18 @@
 </ul>
 <h2>Projects</h2>
 <table>
-  <td>
-    <tr>Project Name</tr>
-    <tr>Last Updated</tr>
-    <tr>Active Status</tr>
-  </td>
+  <tr>
+    <td>Project Name</td>
+    <td>Last Updated</td>
+    <td>Active Status</td>
+  </tr>
 {% for project in projects %}
-<td>
-    <tr><a href="/details/project/{{ project.pID }}/">{{ project.projectName }}</a></tr>
-    <tr><p>{{ project.projectStatus.lastUpdated }}</p></tr>
-    <tr><p>{{ project.projectStatus.active }}</p></tr>
+<tr>
+    <td><a href="/details/project/{{ project.pID }}/">{{ project.projectName }}</a></td>
+    <td><p>{{ project.projectStatus.lastUpdated }}</p></td>
+    <td><p>{{ project.projectStatus.active }}</p></td>
 
-</td>
+</tr>
 {% endfor %}
 </table>
 <footer>
