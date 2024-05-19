@@ -2,9 +2,8 @@
 <html>
 <head>
   <title>{% block title %}{% endblock %}</title>
-  {% load static %}
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/styles.css" />
   
 </head>
 <body>
