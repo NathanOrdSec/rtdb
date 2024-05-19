@@ -27,7 +27,7 @@ class SocialForm(forms.ModelForm):
  
     class Meta:
         model = Socials
-        fields = ['twitter','instagram','youtube','twitch','reddit','tiktok','threads','spotify','website','email','other','image']
+        fields = ['twitter','instagram','youtube','twitch','reddit','tiktok','threads','spotify','apple','website','email','other','image']
     def __init__(self, *args, **kwargs):
         super(SocialForm, self).__init__(*args, **kwargs)
         self.fields['image'].required = False
