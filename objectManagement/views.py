@@ -64,7 +64,7 @@ def details(request,detailType,id):
         personProjects = None
 
       context = {
-      'person': individualPerson,
+      'person': individualPerson.all(),
       'projects': individualPerson.pID.all(),
       'socialMedia': individualPerson.sID.getLinks
       }
@@ -79,7 +79,7 @@ def details(request,detailType,id):
         return redirect('/list/project')
       
       context = {
-        'project': individualProject,
+        'project': individualProject.all(),
         'socials': individualProject.sID.getLinks,
         'people': People.objects.filter(personStatus__approved=False,pID=individualProject)
       }
