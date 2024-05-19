@@ -15,8 +15,13 @@ class Status(models.Model):
 class Socials(models.Model):
     sID=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='SID')
     twitter=models.URLField(max_length=255,blank=True,verbose_name="Twitter")
+    instagram=models.URLField(max_length=255,blank=True,verbose_name="Instagram")
     youtube=models.URLField(max_length=255,blank=True,verbose_name="YouTube")
     twitch=models.URLField(max_length=255,blank=True,verbose_name="Twitch")
+    reddit=models.URLField(max_length=255,blank=True,verbose_name="Reddit")
+    tiktok=models.URLField(max_length=255,blank=True,verbose_name="TikTok")
+    threads=models.URLField(max_length=255,blank=True,verbose_name="Threads")
+    spotify=models.URLField(max_length=255,blank=True,verbose_name="Spotify")
     website=models.URLField(max_length=255,blank=True,verbose_name="Website")
     email=models.EmailField(max_length=255,blank=True,verbose_name="Email")
     other=models.CharField(max_length=255,blank=True,verbose_name="Other")
@@ -25,8 +30,13 @@ class Socials(models.Model):
     @property
     def getLinks(self):
         return {"Twitter":self.twitter,
+                "Instagram":self.instagram,
                 "YouTube":self.youtube,
                 "Twitch":self.twitch,
+                "Reddit":self.reddit,
+                "TikTok":self.tiktok,
+                "Threads":self.threads,
+                "Spotify":self.spotify,
                 "Website":self.website,
                 "Other":self.other}
 
