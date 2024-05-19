@@ -64,9 +64,10 @@ def details(request,detailType,id):
         personProjects = None
 
       context = {
-      'person': individualPerson.all(),
+      'person': individualPerson,
       'projects': individualPerson.pID.all(),
-      'socialMedia': individualPerson.sID.getLinks
+      'socialMedia': individualPerson.sID.getLinks,
+      'status':individualPerson.personStatus.all()
       }
       return HttpResponse(template.render(context, request))
      
@@ -79,9 +80,10 @@ def details(request,detailType,id):
         return redirect('/list/project')
       
       context = {
-        'project': individualProject.all(),
+        'project': individualProject,
         'socials': individualProject.sID.getLinks,
-        'people': People.objects.filter(personStatus__approved=False,pID=individualProject)
+        'people': People.objects.filter(personStatus__approved=False,pID=individualProject),
+        'status':individualProject.personStatus.all()
       }
       return HttpResponse(template.render(context))
 
