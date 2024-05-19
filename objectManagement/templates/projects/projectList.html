@@ -13,6 +13,7 @@
         {% if perms.objectManagement.can_mark_approved %}
         <td>Approved</td>
         {% endif %}
+        <td>Description</td>
     </tr>
     {% for project in allProjects %}
     <tr>
@@ -20,6 +21,7 @@
         {% if perms.objectManagement.can_mark_approved %}
         <td><p>{{ project.projectStatus.approved }}</p></td>
         {% endif %}
+        <td><p class="multiple-truncate">{{ project.projectDescription }}</p></td>
     </tr>
     {% endfor %}
   </table>
