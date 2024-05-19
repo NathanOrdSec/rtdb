@@ -7,18 +7,15 @@
 
 {% block content %}
 <h1>{{ project.projectName }}</h1>
-
+<h2>Project Details</h2>
 {% if status.creator != None %}
-<h3>{{ status.creator }}</h3>
+<p>{{ status.creator }}<p>
 {% endif %}
 
-{% if status.lastUpdated != None %}
-<h3>{{ status.active }}</h3>
-{% endif %}
 
+<p>Active Project: {{ status.active }}<p>
 {% if status.lastUpdated != None %}
-<h3>{{ status.lastUpdated }}</h3>
-
+<p>{{ status.lastUpdated }}<p>
 {% endif %}
 
 <p>{{ project.projectDescription }}</p>
