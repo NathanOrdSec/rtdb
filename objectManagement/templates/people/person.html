@@ -26,14 +26,21 @@
 {% endfor %}
 </ul>
 <h2>Projects</h2>
+<table>
+  <td>
+    <tr>Project Name</tr>
+    <tr>Last Updated</tr>
+    <tr>Active Status</tr>
+  </td>
 {% for project in projects %}
-<tr>
-    <td><a href="/details/project/{{ project.pID }}/">{{ project.projectName }}</a></td>
-    <td><p>Last Updated: {{ project.projectStatus.lastUpdated }}</p></td>
-    <td><p>Status: {{ project.projectStatus.active }}</p></td>
+<td>
+    <tr><a href="/details/project/{{ project.pID }}/">{{ project.projectName }}</a></tr>
+    <tr><p>{{ project.projectStatus.lastUpdated }}</p></tr>
+    <tr><p>{{ project.projectStatus.active }}</p></tr>
 
-</tr>
+</td>
 {% endfor %}
+</table>
 <footer>
   <br><a href="/editPerson/{{ person.hID }}">Edit Person Details</a>
   <br><a href="/delete/person/{{ person.hID }}">Delete Person</a>
