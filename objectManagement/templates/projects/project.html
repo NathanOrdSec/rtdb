@@ -8,8 +8,8 @@
 {% block content %}
 <h1>{{ project.projectName }}</h1>
 
-{% if project.Status.creator != None %}
-<h3>{{ project.Status.creator }}</h3>
+{% if project.projectStatus.creator != None %}
+<h3>{{ project.projectStatus.creator }}</h3>
 {% endif %}
 
 {% if project.Status.lastUpdated != None %}
