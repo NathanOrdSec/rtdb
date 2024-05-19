@@ -146,6 +146,7 @@ if USE_SPACES:
     # static settings
     AWS_LOCATION = 'static'
     STATIC_URL = f'{AWS_S3_CDN_URL}/{AWS_LOCATION}/'
+    STATIC_ROOT = f'{AWS_S3_CDN_URL}/{AWS_LOCATION}/'
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     # public media settings
     PUBLIC_MEDIA_LOCATION = 'media'
