@@ -98,35 +98,36 @@ def editPerson(request,id=None):
       hInstance=People()
       hInstance.sID=Socials()
       hInstance.personStatus=Status()
+      hInstance.personStatus.creator=request.user
       hInstance.personStatus.save()
       hInstance.sID.save()
-      hInstance.save()      
-    hForm = PersonForm(request.POST,instance=hInstance,prefix="hForm")
-    sForm = SocialForm(request.POST,request.FILES,instance=hInstance.sID,prefix="sForm")
-    statusForm=StatusForm(request.POST,instance=hInstance.personStatus,prefix="statForm")
-    if statusForm.is_valid():
-      if moderatorCheck(request.user):
-        statusForm.cleaned_data["editor"] = request.user
-      statusForm.save()
-    if hForm.is_valid():
-      hInstance=hForm.save()
-    if sForm.is_valid():
-      sForm.save()
+      hInstance.save()
+    if (moderatorCheck(request.user) or hInstance.personStatus.creator==request.user):
+      hForm = PersonForm(request.POST,instance=hInstance,prefix="hForm")
+      sForm = SocialForm(request.POST,request.FILES,instance=hInstance.sID,prefix="sForm")
+      statusForm=StatusForm(request.POST,instance=hInstance.personStatus,prefix="statForm")
+      if statusForm.is_valid():
+        if moderatorCheck(request.user):
+          statusForm.cleaned_data["editor"] = request.user
+        statusForm.save()
+      if hForm.is_valid():
+        hInstance=hForm.save()
+      if sForm.is_valid():
+        sForm.save()
 
-    if sForm.is_valid() and hForm.is_valid():
-      messages.info(request,'Person Updated')
-      return redirect("/list/person")
+      if sForm.is_valid() and hForm.is_valid():
+        messages.info(request,'Person Updated')
+        return redirect("/list/person")
   else:
     template = loader.get_template('people/editPerson.html')
     hForm = PersonForm(prefix="hForm",instance=hInstance)
 
     if hInstance==None:
       sForm= SocialForm(prefix="sForm")
-      if moderatorCheck(request.user):
-        statusForm=StatusForm(prefix="statForm",initial={'creator': request.user})
+      statusForm=StatusForm(prefix="statForm",initial={'creator': request.user})
     else:
       sForm= SocialForm(prefix="sForm",instance=hInstance.sID)
-      statusForm=StatusForm(instance=hInstance.personStatus,prefix="statForm",initial={'creator': request.user})
+      statusForm=StatusForm(instance=hInstance.personStatus,prefix="statForm",initial={'editor': request.user})
 
     context={
       "personForm": hForm,
