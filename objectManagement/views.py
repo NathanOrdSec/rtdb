@@ -103,7 +103,10 @@ def editPerson(request,id=None):
     sForm = SocialForm(request.POST,request.FILES,instance=hInstance.sID,prefix="sForm")
     statusForm=StatusForm(request.POST,instance=hInstance.personStatus,prefix="statForm")
     if statusForm.is_valid():
-      statusForm.initial["creator"] = request.user
+      if moderatorCheck(request.user):
+        statusForm.initial["editor"] = request.user
+      else:
+        statusForm.initial["creator"] = request.user
       statusForm.save()
     if hForm.is_valid():
       hInstance=hForm.save()

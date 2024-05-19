@@ -49,10 +49,11 @@ class StatusForm(forms.ModelForm):
 
     class Meta:
         model = Status
-        fields = ['approved','active','creator']
+        fields = ['approved','active','creator','editor']
     
     def __init__(self, *args, **kwargs):
         super(StatusForm, self).__init__(*args, **kwargs)
         from django.forms.widgets import HiddenInput
         hide_condition = kwargs.pop('hide_condition',None)
         self.fields['creator'].widget = HiddenInput()
+        self.fields['editor'].widget = HiddenInput()

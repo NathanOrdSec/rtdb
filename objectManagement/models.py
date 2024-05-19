@@ -12,6 +12,7 @@ class Status(models.Model):
     approved=models.BooleanField(default=False)
     banned=models.BooleanField(default=False)
     creator=models.ForeignKey(Users,on_delete=models.CASCADE,null=True)
+    editor=models.ForeignKey(Users,on_delete=models.CASCADE,null=True)
 
 class Socials(models.Model):
     sID=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='SID')
