@@ -8,6 +8,9 @@
 {% block content %}
 <h1>{{ person.firstname }} {{ person.lastname }}</h1>
 <img src="{{ MEDIA_URL }}{{ person.sID.image }}" title="{{ person.firstname }} {{ person.lastname }}" alt_text="{{ person.firstname }} {{ person.lastname }}" />
+{% if person.personStatus.creator != None %}
+<td><p>Creator: {{ person.personStatus.creator }}</p></td>
+{% endif %}
 <h2>Social Media</h2>
 <ul>
 {% for name,link in socialMedia.items %}
