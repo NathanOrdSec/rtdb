@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-&psk#na5l=p3q8
 #DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'True'
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost','rtdb.gg']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','rtdb.gg', '0.0.0.0']
 CSRF_TRUSTED_ORIGINS=['https://rtdb.gg']
 SESSION_COOKIE_SECURE=True
 
@@ -86,9 +86,9 @@ WSGI_APPLICATION = 'rtdb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'defaultdb',
-        'USER': 'doadmin',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('DB_SCHEMA'),
+        'USER': os.environ.get('DB_USER'),
         'PASSWORD': os.environ.get('DB_PASSWORD'),
         'HOST': os.environ.get('DB_HOST'),   # Or an IP Address that your DB is hosted on
         'PORT': os.environ.get('DB_PORT'),
@@ -171,7 +171,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 
-AUTH_USER_MODEL = "authentication.Users" 
+AUTH_USER_MODEL = "authentication.Users"
 
 #Storages
 #Storages

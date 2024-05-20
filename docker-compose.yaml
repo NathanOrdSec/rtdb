@@ -1,0 +1,25 @@
+services:
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pass
+      MYSQL_DATABASE: defaultdb
+      MYSQL_USER: django
+      MYSQL_PASSWORD: django
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    expose:
+      - 3306
+
+  rtdb:
+    build: .
+    depends_on:
+      - mysql
+    environment:
+      DB_PASSWORD: django
+      DB_USER: django
+      DB_SCHEMA: defaultdb
+      DB_HOST: mysql
+      DB_PORT: 3306
+    ports:
+      - "8000:8000"

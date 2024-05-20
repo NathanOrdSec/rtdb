@@ -8,6 +8,6 @@ python3 manage.py migrate sessions
 python3 manage.py migrate
 python3 manage.py createcachetable
 
-python3 manage.py createsuperuser --noinput --username $DJANGO_SUPERUSER_EMAIL --email $DJANGO_SUPERUSER_EMAIL
+#python3 manage.py createsuperuser --noinput --username $DJANGO_SUPERUSER_EMAIL --email $DJANGO_SUPERUSER_EMAIL
 
 gunicorn rtdb.wsgi:application -b 0.0.0.0:8000
