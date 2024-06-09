@@ -3,3 +3,4 @@
 /rtdb/nginx.conf
 /.env.prod
 /.env
+.idea
